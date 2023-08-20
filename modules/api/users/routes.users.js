@@ -2,7 +2,9 @@ import express from "express";
 
 const routerUser = express.Router();
 
-routerUser.get('/', )
+routerUser.post('/signUp', addUser);
+
+routerUser.post('/logIn', testUser);
 
 
 
