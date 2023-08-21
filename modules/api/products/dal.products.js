@@ -3,6 +3,8 @@ import { promisify } from "util";
 
 const readFileAsync = promisify(fs.readFile);
 
+const writeFileAsync = promisify(fs.writeFile);
+
 const getProducts = async () => {
     try {
         const dataAsync = await readFileAsync('./data.json', 'utf-8');
@@ -26,8 +28,6 @@ const getProduct = async (id) => {
         return 'Error reding data';
     }
 }
-
-const writeFileAsync = promisify(fs.writeFile);
 
 const addProduct = async (newProduct) => {
     try {
