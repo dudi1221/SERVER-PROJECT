@@ -20,11 +20,23 @@ const testUser = async (req, res) => {
     }
 }
 
+const getAllUsers = async (req, res) => {
+    try {
+        const user = req.query;
+        const users = await serviceUsers.getAllUsers(user);
+        res.json({users});
+    } catch(err) {
+        console.error('Error server', err);
+        res.json('Error server');
+    }
+}
+
 
 
 const controllerUsers = {
     addUser,
-    testUser
+    testUser,
+    getAllUsers
 }
 
 export default controllerUsers;

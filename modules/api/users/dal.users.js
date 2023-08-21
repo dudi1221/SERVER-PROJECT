@@ -54,11 +54,28 @@ const testUser = async (user) => {
     }
 }
 
+const getAllUsers = async (user) => {
+    try {
+        const dataAsync = await readFileAsync('./users.data.json', 'utf-8');
+        const json = JSON.parse(dataAsync);
+        const accessPermissionCheck = json.find(element => user.email === element.email && user.password === element.password && element.isAdmin === true);
+        if (accessPermissionCheck) {
+            const userData = json.map(element => (`id: ${element.id}, email: ${element.email}, password: ${element.password}, isAdmin: ${element.isAdmin}`));
+            return userData;
+        } else {
+            return 'No access permission. For access permission contact Joel...';
+        }
+    } catch (err) {
+        throw err;
+    }
+}
+
 
 
 const dalUsers = {
     addUser,
-    testUser
+    testUser,
+    getAllUsers
 }
 
 export default dalUsers;
