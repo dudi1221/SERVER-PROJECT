@@ -37,6 +37,15 @@ const getAllUsers = async (user) => {
     }
 }
 
+const getUser = async (id, endUser) => {
+    try {
+        const user = await dalUsers.getUser(id, endUser);
+        return user;
+    } catch(err) {
+        return'Error service';
+    }
+}
+
 
 
 function isUserEmailValid(userEmail) {
@@ -62,7 +71,8 @@ function isStrongPassword(userPassword) {
 const serviceUsers = {
     addUser,
     testUser,
-    getAllUsers
+    getAllUsers,
+    getUser
 }
 
 export default serviceUsers;

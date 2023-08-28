@@ -66,7 +66,25 @@ const getAllUsers = async (user) => {
             return 'No access permission. For access permission contact Joel...';
         }
     } catch (err) {
-        throw err;
+        return 'Error reading data' + err;
+    }
+}
+
+const getUser = async (id, endUser) => {
+    try {
+        const dataAsync = await readFileAsync('./users.data.json', 'utf-8');
+        const json = await JSON.parse(dataAsync);
+        const foundUser = json.find(element => id === element.id);
+        console.log(foundUser);
+        const createsAUserCard = json.find(user => id === user.id);
+        const accessPermissionCheck = json.find(element => endUser.email === element.email && endUser.password === element.password && element.isAdmin === true);
+        if (createsAUserCard || accessPermissionCheck) {
+            return foundUser;
+        } else {
+            return 'User not found or No access permission. For access permission contact Joel...';
+        }
+    } catch(err) {
+        return 'Error reding data';
     }
 }
 
@@ -75,7 +93,8 @@ const getAllUsers = async (user) => {
 const dalUsers = {
     addUser,
     testUser,
-    getAllUsers
+    getAllUsers,
+    getUser
 }
 
 export default dalUsers;

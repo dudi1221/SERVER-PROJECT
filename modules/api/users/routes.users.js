@@ -9,4 +9,6 @@ routerUser.post('/logIn', controllerUsers.testUser);
 
 routerUser.get('/', controllerUsers.getAllUsers);
 
+routerUser.get('/:id', controllerUsers.getUser);
+
 export default routerUser;

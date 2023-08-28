@@ -31,12 +31,24 @@ const getAllUsers = async (req, res) => {
     }
 }
 
+const getUser = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const endUser = req.query;
+        const user = await serviceUsers.getUser(+(id), endUser);
+        res.status(200).json({user});
+    } catch(err) {
+        res.status(404).json({"Error server": err});
+    }
+}
+
 
 
 const controllerUsers = {
     addUser,
     testUser,
-    getAllUsers
+    getAllUsers,
+    getUser
 }
 
 export default controllerUsers;
